@@ -1,0 +1,26 @@
+name: 'custom Github Action'
+description: 'A Example Github Action'
+inputs:
+  num:
+    description: 'Enter a number'
+    required: true
+    default: '1'
+outputs:
+  num_squared:
+    description: 'Square of input number'
+    value: ${{ steps.get-square.outputs.num_squared }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v3.1.3
+      with:
+        python-version: '3.10'
+    - name: Pass Inputs to Shell
+      run: |
+        echo "INPUT_NUM=${{ inputs.num }}" >> $GITHUB_ENV
+      shell: bash
+    - name: Fetch the number's square
+      id: get-square
+      run: python src/get_num_square.py
+      shell: bash
