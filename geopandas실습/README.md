@@ -8,5 +8,6 @@
 ```python
         concatenate([asarray(t.exterior.coords)[:, :2]] +
                     [asarray(r)[:, :2] for r in t.interiors])
-                    ```
+```  
+
 줄맞춤에 유의하시기 바랍니다.
